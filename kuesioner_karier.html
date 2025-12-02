@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuesioner Minat Karier Siswa - IISY</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #eef3f7;
+        padding: 20px;
+    }
+    .container {
+        max-width: 750px;
+        margin: 0 auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2, h3 { margin-bottom: 10px; }
+    label {
+        margin-top: 15px;
+        display: block;
+        font-weight: bold;
+    }
+    textarea, input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+        font-size: 14px;
+        resize: vertical;
+    }
+    button {
+        margin-top: 25px;
+        padding: 12px 20px;
+        font-size: 16px;
+        background: #0066cc;
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+    }
+    button:hover {
+        background: #004f99;
+    }
+    #output {
+        margin-top: 25px;
+        white-space: pre-wrap;
+        background: #f7f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #bbb;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Kuesioner Minat Karier Siswa</h2>
+
+<form id="formData">
+    <label>1. Nama lengkap kamu:</label>
+    <input type="text" name="nama" required>
+
+    <h3>A. Minat dan Kesukaan</h3>
+    <label>2. Pelajaran apa yang paling kamu nikmati? Mengapa?</label>
+    <textarea name="pelajaran_favorit"></textarea>
+
+    <label>3. Kegiatan apa yang membuat kamu lupa waktu?</label>
+    <textarea name="kegiatan_lupa_waktu"></textarea>
+
+    <label>4. Jika tidak ada batasan uang/waktu, apa yang ingin kamu lakukan setiap hari?</label>
+    <textarea name="kegiatan_bebas"></textarea>
+
+    <h3>B. Gaya Kerja</h3>
+    <label>5. Kamu lebih suka bekerja di dalam atau luar ruangan? Mengapa?</label>
+    <textarea name="lokasi_kerja"></textarea>
+
+    <label>6. Kamu lebih nyaman bekerja sendiri atau dalam tim?</label>
+    <textarea name="kerja_sendiri_atau_tim"></textarea>
+
+    <label>7. Kamu suka pekerjaan yang rutin atau bervariasi?</label>
+    <textarea name="kerja_rutin_atau_bervariasi"></textarea>
+
+    <h3>C. Kepribadian</h3>
+    <label>8. Kamu lebih suka memecahkan masalah dengan logika atau kreativitas?</label>
+    <textarea name="logika_atau_kreatif"></textarea>
+
+    <label>9. Kamu suka berbicara di depan umum atau bekerja di belakang layar?</label>
+    <textarea name="public_speaking"></textarea>
+
+    <label>10. Teman-teman biasanya minta bantuan apa ke kamu?</label>
+    <textarea name="bantuan_teman"></textarea>
+
+    <h3>D. Nilai Hidup</h3>
+    <label>11. Dalam bekerja, apa yang paling penting?</label>
+    <textarea name="nilai_kerja"></textarea>
+
+    <label>12. Profesi/tokoh siapa yang kamu kagumi? Kenapa?</label>
+    <textarea name="tokoh_idola"></textarea>
+
+    <label>13. Apa hal yang paling membuat kamu bangga pada diri sendiri?</label>
+    <textarea name="hal_membanggakan"></textarea>
+
+    <h3>E. Eksplorasi Masa Depan</h3>
+    <label>14. Jika kamu bisa mencoba 1 pekerjaan selama seminggu, apa itu?</label>
+    <textarea name="pekerjaan_seminggu"></textarea>
+
+    <label>15. Pekerjaan apa yang tidak kamu inginkan? Mengapa?</label>
+    <textarea name="pekerjaan_tidak_suka"></textarea>
+
+    <label>16. Kekuatan apa yang kamu punya dan kelemahan apa yang ingin kamu perbaiki?</label>
+    <textarea name="kelebihan_kelemahan"></textarea>
+
+    <button type="button" onclick="submitData()">KIRIM</button>
+</form>
+
+<h3>Output (copy dan kirim ke ChatGPT):</h3>
+<div id="output"></div>
+</div>
+
+<script>
+function submitData() {
+    const form = document.getElementById("formData");
+    const formData = new FormData(form);
+    let result = {};
+
+    for (let [key, value] of formData.entries()) {
+        result[key] = value.trim();
+    }
+
+    document.getElementById("output").textContent = 
+        JSON.stringify(result, null, 4);
+}
+</script>
+
+</body>
+</html>
